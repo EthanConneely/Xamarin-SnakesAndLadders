@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Snakes_And_Ladders.MainPage">
+
+    <StackLayout HorizontalOptions="Center"  >
+
+        <Grid x:Name="gameBoard" WidthRequest="400" HeightRequest="400" VerticalOptions="Center" RowSpacing="2" ColumnSpacing="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <ImageButton Clicked="Cheat" Source="board.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="10" Grid.RowSpan="10"/>
+
+            <Image x:Name="player4" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playeryellow.png" />
+            <Image x:Name="player3" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playergreen.png" />
+            <Image x:Name="player2" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playerblue.png" />
+            <Image x:Name="player1" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playerred.png" />
+        </Grid>
+
+        <Label x:Name="currentTurnText" Text="Player 1's Turn" FontSize="Large" HorizontalTextAlignment="Center"/>
+
+        <StackLayout Orientation="Horizontal" Margin="10, 20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <ImageButton x:Name="diceButton" Clicked="OnDiceClicked" Source="diceone.png" WidthRequest="180"/>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
