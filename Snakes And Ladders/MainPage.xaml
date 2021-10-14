@@ -31,7 +31,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ImageButton Clicked="Cheat" Source="board.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="10" Grid.RowSpan="10"/>
+            <Image Source="board.png" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="10" Grid.RowSpan="10"/>
 
             <Image x:Name="player4" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playeryellow.png" />
             <Image x:Name="player3" IsVisible="false" Grid.Column="0" Grid.Row="9" Source="playergreen.png" />
@@ -41,7 +41,7 @@
 
         <Label x:Name="currentTurnText" Text="Player 1's Turn" FontSize="Large" HorizontalTextAlignment="Center"/>
 
-        <StackLayout Orientation="Horizontal" Margin="10, 20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <ImageButton x:Name="diceButton" Clicked="OnDiceClicked" Source="diceone.png" WidthRequest="180"/>
         </StackLayout>
 

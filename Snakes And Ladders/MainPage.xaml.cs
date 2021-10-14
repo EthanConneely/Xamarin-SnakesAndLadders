@@ -13,7 +13,7 @@ namespace Snakes_And_Ladders
         const int FinishCell = 99;
 
         // The time in milliseconds to animate over a single cell 1000 = 1 second
-        const int AnimateTime = 500;
+        const int AnimateTime = 150;
 
         // random number generator for used as the dice roll
         Random rng;
@@ -89,7 +89,7 @@ namespace Snakes_And_Ladders
             rng = new Random();
 
             // Reset the players positions
-            playersPoition = new int[4] { 94, 0, 0, 0 };
+            playersPoition = new int[4] { 0, 0, 0, 0 };
 
             // Make player 1 start first again
             currentPlayer = 0;
@@ -100,23 +100,28 @@ namespace Snakes_And_Ladders
             // display which players turn it is on the label remember agian current player goes from 0-3
             currentTurnText.Text = $"Player {currentPlayer + 1}'s Turn";
 
+            string action;
+
             // We ask the user how many people are playing in a popup
-            string action = await DisplayActionSheet("How many players?", null, null, "One", "Two", "Three", "Four");
-            switch (action)
+            do
             {
-                case "One":
-                    playersPlaying = 1;
-                    break;
-                case "Two":
-                    playersPlaying = 2;
-                    break;
-                case "Three":
-                    playersPlaying = 3;
-                    break;
-                case "Four":
-                    playersPlaying = 4;
-                    break;
-            }
+                action = await DisplayActionSheet("How many players?", null, null, "One", "Two", "Three", "Four");
+                switch (action)
+                {
+                    case "One":
+                        playersPlaying = 1;
+                        break;
+                    case "Two":
+                        playersPlaying = 2;
+                        break;
+                    case "Three":
+                        playersPlaying = 3;
+                        break;
+                    case "Four":
+                        playersPlaying = 4;
+                        break;
+                }
+            } while (string.IsNullOrEmpty(action));
 
             // Hide all players and then only enable the ones playing
             player1.IsVisible = false;
@@ -188,14 +193,20 @@ namespace Snakes_And_Ladders
 
         private async Task HandlePlayersTurn(int roll)
         {
-            playersPoition[currentPlayer] += roll;
+            bool bounceBack = false;
 
-            Debug.WriteLine("Start moving");
-
-            // Animate moving the player
-            await MovePlayer();
-
-            Debug.WriteLine("Moved to index " + playersPoition[currentPlayer]);
+            for (int i = 0; i < roll; i++)
+            {
+                // Bounce back off end of the board
+                if (playersPoition[0] == FinishCell && bounceBack == false)
+                {
+                    bounceBack = true;
+                }
+                playersPoition[currentPlayer] += bounceBack ? -1 : 1;
+                Debug.WriteLine("Moved to index " + playersPoition[currentPlayer]);
+                // Animate moving the player
+                await MovePlayer();
+            }
 
             // Check if the player landed on a snake or a ladder
             if (ladders.ContainsKey(playersPoition[currentPlayer]))// On a ladder :)
@@ -241,15 +252,6 @@ namespace Snakes_And_Ladders
         // TASK is needed so you can call an await from within an await function
         async Task MovePlayer()
         {
-            // Bounce back off end of the board
-            if (playersPoition[currentPlayer] > FinishCell)
-            {
-                // if we land on cell 100+ we need to get the how many cells we over shot and go back that many
-                // eg we land on cell 101 which is 2 cells after the end
-                // we then should go to cell index 97
-                playersPoition[currentPlayer] = FinishCell - (playersPoition[currentPlayer] % FinishCell);
-            }
-
             int cellIndex = playersPoition[currentPlayer];
 
             // this is the equivalent to his weird move horizontal and vertical methods
@@ -271,30 +273,10 @@ namespace Snakes_And_Ladders
             double hDistance = gameBoard.X + (gameBoard.Width / 10 * x);
             double vDistance = gameBoard.Y - (gameBoard.Height / 10 * y);
 
+            var player = gameBoard.FindByName<Image>("player" + (currentPlayer + 1));
+
             // Change the visuals depending on which 
-            switch (currentPlayer)
-            {
-                case 0:
-                    await player1.TranslateTo(hDistance, vDistance, AnimateTime);
-                    break;
-
-                case 1:
-                    await player2.TranslateTo(hDistance, vDistance, AnimateTime);
-                    break;
-
-                case 2:
-                    await player3.TranslateTo(hDistance, vDistance, AnimateTime);
-                    break;
-
-                case 3:
-                    await player4.TranslateTo(hDistance, vDistance, AnimateTime);
-                    break;
-            }
-        }
-
-        private void Cheat(object sender, EventArgs e)
-        {
-            playersPoition[0] = 97;
+            await player.TranslateTo(hDistance, vDistance, AnimateTime);
         }
     }
 }
