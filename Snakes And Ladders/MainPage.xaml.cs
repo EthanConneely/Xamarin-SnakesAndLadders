@@ -72,7 +72,7 @@ namespace Snakes_And_Ladders
             {87, 90},
         };
 
-        // this is run when the page is created
+        // This is run when the page is created
         public MainPage()
         {
             InitializeComponent();
@@ -170,28 +170,31 @@ namespace Snakes_And_Ladders
             ImageButton button = (ImageButton)sender;
 
             // We use the rng to get the number on the dice we rolled the number starts at 1 and goes up to 7 because 7 isnt included in the rng
-            int roll = rng.Next(1, 7);
+
 
             // this could be done with a normal button but i think it looks better clicking on a dice plus
             // the value on the dice is then displayed for what you rolled
 
             // this is because android cannot allow numbers in its name it would be alot easier if it did
             // this is just an array of strings in order so when we roll a one it is passed and return the string "one"
+
             string[] numbersInTextForm = new string[] { "one", "two", "three", "four", "five", "six" };
+
+            for (int i = 0; i < 3; i++)
+            {
+                button.Source = "dice" + numbersInTextForm[rng.Next(1, 7) - 1] + ".png";
+                await Task.Delay(250);
+            }
+            int roll = rng.Next(1, 7);
+
             button.Source = "dice" + numbersInTextForm[roll - 1] + ".png";
 
 
             // Handle the main logic of snakes and ladders
-            await HandlePlayersTurn(roll);
-
-            // display which players turn it is on the label remember agian current player goes from 0-3
-            currentTurnText.Text = $"Player {currentPlayer + 1}'s Turn";
-
-            // enable the dice again
-            diceButton.IsEnabled = true;
+            HandlePlayersTurn(roll);
         }
 
-        private async Task HandlePlayersTurn(int roll)
+        private async void HandlePlayersTurn(int roll)
         {
             bool bounceBack = false;
 
@@ -241,7 +244,7 @@ namespace Snakes_And_Ladders
                 return;
             }
 
-            // Next player and loop back around
+            // Next player and loop back around if they did not roll 6
             if (roll != 6)
             {
                 currentPlayer += 1;
@@ -251,6 +254,13 @@ namespace Snakes_And_Ladders
             {
                 currentPlayer = 0;
             }
+
+
+            // display which players turn it is on the label remember agian current player goes from 0-3
+            currentTurnText.Text = $"Player {currentPlayer + 1}'s Turn";
+
+            // enable the dice again
+            diceButton.IsEnabled = true;
         }
 
         // TASK is needed so you can call an await from within an await function
