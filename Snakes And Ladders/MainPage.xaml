@@ -41,8 +41,8 @@
 
         <Label x:Name="currentTurnText" Text="Player 1's Turn" FontSize="Large" HorizontalTextAlignment="Center"/>
 
-        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <ImageButton x:Name="diceButton" Clicked="OnDiceClicked" Source="diceone.png" WidthRequest="180"/>
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" BackgroundColor="White">
+            <ImageButton x:Name="diceButton"  Clicked="OnDiceClicked" Source="diceone.png" WidthRequest="180" HeightRequest="180"/>
         </StackLayout>
 
     </StackLayout>
