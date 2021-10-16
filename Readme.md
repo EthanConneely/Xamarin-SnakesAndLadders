@@ -1,3 +1,3 @@
 # Snakes and Ladders
 
-![Snake Icon](Snakes%20And%20Ladders.Android/Assets/Icon.png)
+![Snake Icon](Snakes%20And%20Ladders.Android\Resources\drawable\myicon.png)
