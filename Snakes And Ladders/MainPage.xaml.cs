@@ -198,7 +198,7 @@ namespace Snakes_And_Ladders
             for (int i = 0; i < roll; i++)
             {
                 // Bounce back off end of the board
-                if (playersPoition[0] == FinishCell && bounceBack == false)
+                if (playersPoition[currentPlayer] == FinishCell && bounceBack == false)
                 {
                     bounceBack = true;
                 }
@@ -242,7 +242,11 @@ namespace Snakes_And_Ladders
             }
 
             // Next player and loop back around
-            currentPlayer += 1;
+            if (roll != 6)
+            {
+                currentPlayer += 1;
+            }
+
             if (currentPlayer >= playersPlaying)
             {
                 currentPlayer = 0;

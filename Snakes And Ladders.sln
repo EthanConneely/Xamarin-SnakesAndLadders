@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snakes And Ladders.UWP", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snakes And Ladders.Android", "Snakes And Ladders.Android\Snakes And Ladders.Android.csproj", "{706DDD31-0F27-4111-8F35-B1E332D326AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snakes And Ladders", "Snakes And Ladders\Snakes And Ladders.csproj", "{5F453A65-C97A-417A-89D4-445BB2C26022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snakes And Ladders", "Snakes And Ladders\Snakes And Ladders.csproj", "{5F453A65-C97A-417A-89D4-445BB2C26022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
