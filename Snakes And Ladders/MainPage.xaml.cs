@@ -29,47 +29,37 @@ namespace Snakes_And_Ladders
         int[] playersPoition;
 
         // A dictonary is like an array but it can contain a key(int, string etc) which will return a value (int in our case but can be anything)
-        // the way this works is if we want to know where the first snake goes to we do this
-        // snakes[7] this will return 3
-        // if we want to know where the ladder at cell 16 goes do this
-        // snakes[48] this will return 66
+        // the way this works is if we want to know where the first snake goes to 15 -> 5
         // in a dictonary the keys have to be unique meaning you can have 2 50s but values can be the same
         readonly Dictionary<int, int> snakes = new Dictionary<int, int>()
         {
-            {7 , 3 },// our example
-            {17, 0 },
-            {25, 9},
-            {38, 4 },
-            {50, 5 },
-            {53, 35},
-            {55, 0 },
-            {59, 22},
-            {74, 27},
-            {82, 44},
-            {84, 58},
-            {89, 47},
-            {91, 24},// Mean
-            {96, 86},
-            {98, 62},
+            {15,  5 },
+            {45, 24 },
+            {48, 10 },
+            {61, 18 },
+            {63, 59 },
+            {73, 52 },
+            {88, 67 },
+            {91, 87 },
+            {94, 74 },
+            {98, 79 },
         };
 
-        // The numbers are the cell number -1 as we start from zero not 1
+        // The numbers are the cell number - 1 as we start from zero not 1
         // eg cell 1 is actually 0 cell 100 is 99 etc
         readonly Dictionary<int, int> ladders = new Dictionary<int, int>()
         {
-            {2,  19},
-            {5,  13},
-            {10, 27},
-            {14, 33},
-            {16, 73},// Awesome
-            {21, 36},
-            {37, 58},
-            {48, 66},// our other example
-            {56, 75},
-            {60, 77},
-            {72, 85},
-            {80, 97},
-            {87, 90},
+            {1 , 37},
+            {6 , 13},
+            {7 , 30},
+            {14, 25},
+            {20, 41},
+            {27, 83},
+            {35, 43},
+            {50, 66},
+            {70, 90},
+            {77, 97},
+            {86, 93},
         };
 
         // This is run when the page is created
@@ -81,7 +71,15 @@ namespace Snakes_And_Ladders
         // This is a method that is called when the page is loaded
         protected override void OnAppearing()
         {
+            SizeChanged += (s, e) => GameBoard_SizeChanged();
+            GameBoard_SizeChanged();
             ResetGame();
+        }
+
+        private void GameBoard_SizeChanged()
+        {
+            gameBoard.WidthRequest = Width;
+            gameBoard.HeightRequest = Width;
         }
 
         private async void ResetGame()

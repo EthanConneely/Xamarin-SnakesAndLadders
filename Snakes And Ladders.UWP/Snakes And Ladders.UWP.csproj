@@ -161,10 +161,22 @@
     <Content Include="dicesix.png" />
     <Content Include="dicethree.png" />
     <Content Include="dicetwo.png" />
-    <Content Include="playerblue.png" />
-    <Content Include="playergreen.png" />
-    <Content Include="playerred.png" />
-    <Content Include="playeryellow.png" />
+    <Content Include="playerblue.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="playergreen.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="playerred.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="playeryellow.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

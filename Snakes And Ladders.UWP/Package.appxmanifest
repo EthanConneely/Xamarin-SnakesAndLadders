@@ -32,7 +32,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="Snakes_And_Ladders.UWP.App">
       <uap:VisualElements
-        DisplayName="Snakes_And_Ladders.UWP"
+        DisplayName="Snakes and Ladders"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="Snakes_And_Ladders.UWP"
